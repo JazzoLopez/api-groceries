@@ -5,4 +5,9 @@ productDao.getAll = async (req, res) => {
     return products;
 }
 
+productDao.getOne =  async (barcode) => {
+    const product = await Product.findOne({barcode:barcode});
+    return product;
+}
+
 export default productDao;
