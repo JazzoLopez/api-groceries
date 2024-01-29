@@ -17,8 +17,26 @@ productDao.insertOne = async(product)=>{
 }
 
 productDao.updateOne = async(barcode, product)=>{
-await Product.findOneAndUpdate({barcode:barcode},product);
-return true;
+const updateOne = await Product.findOneAndUpdate({barcode:barcode},product);
+if(updateOne != null){ 
+    return true;
+
+}
+else{
+    return false
+} 
+}
+
+
+productDao.deleteOne = async(barcode)=>{
+const deleteOne = await Product.findOneAndDelete({barcode:barcode});
+if(deleteOne != null){ 
+    return true;
+
+}
+else{
+    return false
+} 
 }
 
 export default productDao;

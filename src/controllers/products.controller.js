@@ -50,4 +50,16 @@ const updateOne = async (req, res) => {
    })
 }
 
-export {getAll, getOne, insertOne, updateOne}
+const deleteOne = async (req, res) => {
+   productDao.deleteOne(req.params.barcode)
+   .then(result => {
+      if(result){
+         res.status(200).json({"status":"product delete"})
+      }
+   })
+   .catch(err => {
+      res.status(500).json({"status":"Server unaviable"})
+   })
+}
+
+export {getAll, getOne, insertOne, updateOne, deleteOne}
