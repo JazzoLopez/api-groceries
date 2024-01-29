@@ -24,8 +24,30 @@ const getOne = async (req, res) => {
    })
    .catch(err => {
       console.log(err.msg)
-      res.json({"status":"Servidor no disponible"})
+      res.status(500).json({"status":"Server unaviable"})
    })
 }
 
-export {getAll, getOne}
+const insertOne = async (req, res) => {
+productDao.insertOne(req.body)
+.then(result => {
+  if(result)
+   res.status(201).json({"status":"product save"})
+}).catch(err => {
+   res.status(500).json({"status":"Server unaviable"})
+})
+}
+
+const updateOne = async (req, res) => {
+   productDao.updateOne(req.params.barcode, req.body)
+   .then(result => {
+      if(result){
+         res.status(200).json({"status":"product update"})
+      }
+   })
+   .catch(err => {
+      res.status(500).json({"status":"Server unaviable"})
+   })
+}
+
+export {getAll, getOne, insertOne, updateOne}
