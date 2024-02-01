@@ -60,6 +60,38 @@ const deleteOne = async (req, res) => {
    .catch(err => {
       res.status(500).json({"status":"Server unaviable"})
    })
+
 }
 
-export {getAll, getOne, insertOne, updateOne, deleteOne}
+const distinct = async (req, res) => {
+   productDao.distinct(req.params.field)
+   .then(result => {
+      res.status(200).json(result)
+   })
+   .catch(err => {
+      res.status(500).json({"status":"Server unaviable"})
+   })
+}
+
+const sortBarcode = async (req, res) => {
+   productDao.sortBarcode()
+   .then(result => {
+      res.status(200).json(result)
+   })
+   .catch(err => {
+      res.status(500).json({"status":"Server unaviable"})
+   })
+}
+
+
+const reverseSortBarcode = async (req, res) => {
+   productDao.reverseSortBarcode()
+   .then(result => {
+      res.status(200).json(result)
+   })
+   .catch(err => {
+      res.status(500).json({"status":"Server unaviable"})
+   })
+}
+
+export {getAll, getOne, insertOne, updateOne, deleteOne, distinct, sortBarcode, reverseSortBarcode} 

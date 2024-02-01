@@ -1,7 +1,7 @@
 import Product from "../models/products.model.js";
 const productDao = {}
 productDao.getAll = async (req, res) => {
-    const products = await Product.find()
+    const products = await Product.find();
     return products;
 }
 
@@ -38,5 +38,23 @@ else{
     return false
 } 
 }
+
+productDao.distinct = async (field) => {
+    const distinct = await Product.distinct(field); //  DEVUELVE LOS CAMPOS UNICOS DE DONDE ESPECIFICAMOS
+    return distinct;
+}
+
+productDao.sortBarcode = async () => {
+    const sortBarcode = await Product.find().sort({barcode:1});
+    return sortBarcode;
+}
+
+productDao.reverseSortBarcode = async () => {
+    const sortBarcode = await Product.find().sort({barcode:-1});
+    return sortBarcode;
+}
+
+
+
 
 export default productDao;
