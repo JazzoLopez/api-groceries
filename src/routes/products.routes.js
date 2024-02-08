@@ -7,7 +7,9 @@ router.get('/getOne/:barcode',getOne)
 router.post('/insertOne',insertOne)
 router.put('/updateOne/:barcode',updateOne)
 router.delete('/deleteOne/:barcode',deleteOne)
-router.get('/distinct/:field',distinct)
-router.get('/sortBarcode',sortBarcode)
-router.get('/reverseSortBarcode',reverseSortBarcode)
+
+
+// router.get('/distinct/:field',distinct)
+// router.get('/sortBarcode',sortBarcode)
+// router.get('/reverseSortBarcode',reverseSortBarcode)
 export default router;  
