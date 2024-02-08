@@ -1,6 +1,7 @@
 import productDao from "../dao/products.dao.js";
+const productController = {}
 
-const getAll = async (req, res) => {
+productController.getAll = async (req, res) => {
    productDao.getAll()
    //PROMESA
    .then(result => {
@@ -10,7 +11,7 @@ const getAll = async (req, res) => {
    })
 }
 
-const getOne = async (req, res) => {
+productController.getOne = async (req, res) => {
    productDao.getOne(req.params.barcode)
    .then(result => {
       if(result!= null){
@@ -28,7 +29,7 @@ const getOne = async (req, res) => {
    })
 }
 
-const insertOne = async (req, res) => {
+productController.insertOne = async (req, res) => {
 productDao.insertOne(req.body)
 .then(result => {
   if(result)
@@ -38,7 +39,7 @@ productDao.insertOne(req.body)
 })
 }
 
-const updateOne = async (req, res) => {
+productController.updateOne = async (req, res) => {
    productDao.updateOne(req.params.barcode, req.body)
    .then(result => {
       if(result){
@@ -50,7 +51,7 @@ const updateOne = async (req, res) => {
    })
 }
 
-const deleteOne = async (req, res) => {
+productController.deleteOne = async (req, res) => {
    productDao.deleteOne(req.params.barcode)
    .then(result => {
       if(result){
@@ -64,4 +65,4 @@ const deleteOne = async (req, res) => {
 }
 
 
-export {getAll, getOne, insertOne, updateOne, deleteOne} 
+export default productController;
