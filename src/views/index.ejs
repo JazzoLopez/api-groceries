@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div data-role="page">
+        <div class="" data-role="header">
+            <h1>Abarrotes TI</h1>
+        </div>
+        <div data-role="content">
+            <form action="/api/products/" method="post">
+                <input type="text" name="barcode" placeholder="Código de barras">
+                <input type="text" name="description" placeholder="Descripción">
+                <input type="text" name="brand" placeholder="Marca">
+                <input type="number" name="price" placeholder="Precio">
+                <input type="number" name="cost" placeholder="Costo">
+                <input type="number" name="stock" placeholder="Costo">
+                <input type="date" name="expiredDate" placeholder="Fecha de expiracion">
+                <label for="status">Activo</label>
+                <select name="status" data-role="slider">
+                    <option value="0">No</option>
+                    <option value="1">Si</option>
+                </select>
+                <button class="ui-shadow ui-btn ui-corner-all" type="submit">Guardar</button>
+            </form>
+        </div>
+        <div data-role="footer">
+            <h5>Developed by JazzoLopez</h5>
+        </div>
+    </div>
+</body>
+
+</html>

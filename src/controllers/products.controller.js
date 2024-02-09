@@ -4,8 +4,14 @@ const productController = {}
 productController.getAll = async (req, res) => {
    productDao.getAll()
    //PROMESA
-   .then(result => {
-    res.status(200).send(result)
+   .then(products => {
+    if(products != null){
+      res.render('../src/views/index.ejs')
+    }else{
+      res.json({
+         "status":"not found"
+      })
+    }
    }).catch(err => {
     res.status(404).json("Error")
    })
@@ -33,7 +39,7 @@ productController.insertOne = async (req, res) => {
 productDao.insertOne(req.body)
 .then(result => {
   if(result)
-   res.status(201).json({"status":"product save"})
+   res.redirect('/api/products');
 }).catch(err => {
    res.status(500).json({"status":"Server unaviable"})
 })
@@ -66,3 +72,4 @@ productController.deleteOne = async (req, res) => {
 
 
 export default productController;
+
