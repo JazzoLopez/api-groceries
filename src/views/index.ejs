@@ -11,9 +11,16 @@
 </head>
 
 <body>
-    <div data-role="page">
+    <div data-role="page" data-theme="b">
         <div class="" data-role="header">
             <h1>Abarrotes TI</h1>
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#" data-icon="home">Inicio</a></li>
+                    <li><a href="#" data-icon="eye" class="ui-btn-active">Productos</a></li>
+                    <li><a href="#" data-icon="user">Empleados</a></li>
+                </ul>
+            </div>
         </div>
         <div data-role="content">
             <form action="/api/products/" method="post">
@@ -22,7 +29,7 @@
                 <input type="text" name="brand" placeholder="Marca">
                 <input type="number" name="price" placeholder="Precio">
                 <input type="number" name="cost" placeholder="Costo">
-                <input type="number" name="stock" placeholder="Costo">
+                <input type="number" name="stock" placeholder="Stock">
                 <input type="date" name="expiredDate" placeholder="Fecha de expiracion">
                 <label for="status">Activo</label>
                 <select name="status" data-role="slider">
@@ -31,11 +38,54 @@
                 </select>
                 <button class="ui-shadow ui-btn ui-corner-all" type="submit">Guardar</button>
             </form>
+            <!--  -->
+
+            <form>
+                <input data-type="search" id="searchForCollapsibleSetChildren">
+            </form>
+            <div data-role="collapsibleset" data-filter="true" data-children="> div, > div div ul li" data-inset="true"
+                id="collapsiblesetForFilterChildren" data-input="#searchForCollapsibleSetChildren">
+                <!-- <h3>Animals</h3> -->
+                <% products.forEach((product)=> {%>
+                    <div data-role="collapsible" data-filtertext="<%= product.description%>">
+                        <h3>
+                            <%= product.description %>
+                        </h3>
+                        <ul data-role="listview" data-inset="false">
+                            <liW>
+                                Codigo de barras: <%= product.barcode%>
+                            </li>
+                            <li data-filtertext="<%= product.brand%>">
+                                Descripción: <%= product.brand%>
+                            </li>
+                            <li data-filtertext="<%= product.cost%>">
+                                Costo: <%= product.cost%>
+                            </li>
+                            <li data-filtertext="<%= product.price%>">
+                                Precio: <%= product.price%>
+                            </li>
+                            <li data-filtertext="<%= product.stock%>">
+                                Stock: <%= product.stock%>
+                            </li>
+                            <li data-filtertext="<%= product.expiredDate%>">
+                                Fecha de caducidad: <%= product.expiredDate%>
+                            </li>
+
+                            <% if(product.status){%>
+                                <li style="background-color: green;">Activo</li>
+                                <% } else{%>
+                                    <li style="background-color: red;">Inactivo</li>
+                                    <% }%>
+                                        </>
+                        </ul>
+
+                    </div>
+                    <% })%>
+            </div>
+            <div data-role="footer">
+                <h5>Developed by JazzoLopez</h5>
+            </div>
         </div>
-        <div data-role="footer">
-            <h5>Developed by JazzoLopez</h5>
-        </div>
-    </div>
 </body>
 
 </html>

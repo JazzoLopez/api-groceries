@@ -6,7 +6,9 @@ productController.getAll = async (req, res) => {
    //PROMESA
    .then(products => {
     if(products != null){
-      res.render('../src/views/index.ejs')
+      res.render('../src/views/index.ejs',{
+         products
+      })
     }else{
       res.json({
          "status":"not found"
