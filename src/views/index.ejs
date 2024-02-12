@@ -52,7 +52,7 @@
                             <%= product.description %>
                         </h3>
                         <ul data-role="listview" data-inset="false">
-                            <liW>
+                            <li>
                                 Codigo de barras: <%= product.barcode%>
                             </li>
                             <li data-filtertext="<%= product.brand%>">
@@ -70,13 +70,18 @@
                             <li data-filtertext="<%= product.expiredDate%>">
                                 Fecha de caducidad: <%= product.expiredDate%>
                             </li>
-
                             <% if(product.status){%>
-                                <li style="background-color: green;">Activo</li>
-                                <% } else{%>
-                                    <li style="background-color: red;">Inactivo</li>
-                                    <% }%>
-                                        </>
+                            <li style="background-color: green;">Activo</li>
+                            <% } else{%>
+                            <li style="background-color: red;">Inactivo</li>
+                            <% }%>
+                            <li>
+                                <a href="/<%=product.barcode %>">Editar</a>
+                            </li>
+                            <li>
+                                <a href="/<%=product.barcode %>">Eliminar</a>
+                            </li>
+
                         </ul>
 
                     </div>

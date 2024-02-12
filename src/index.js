@@ -4,6 +4,6 @@ const c = console.log.bind(console);
 const port = process.env.SERVER_PORT;
 
 app.listen(port, () => { 
-    c(`Server on port ${port}`);
+    c(`http://localhost:${port}/api/products`);
 });
 
