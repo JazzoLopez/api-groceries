@@ -76,10 +76,10 @@
                             <li style="background-color: red;">Inactivo</li>
                             <% }%>
                             <li>
-                                <a href="<%=product.barcode %>" class="btn-ui">Editar</a>
+                                <a href="/api/products/<%=product.barcode %>" class="ui-btn">Editar</a>
                             </li>
                             <li>
-                                <a href="<%=product.barcode %>">Eliminar</a>
+                                <a href="/api/products/delete/<%=product.barcode %>" class="ui-btn">Eliminar</a>
                             </li>
 
                         </ul>

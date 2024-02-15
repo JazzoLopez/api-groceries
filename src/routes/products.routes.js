@@ -5,8 +5,8 @@ const router = Router();
 router.get('/',productController.getAll)
 router.get('/:barcode',productController.getOne)
 router.post('/',productController.insertOne)
-router.put('/:barcode',productController.updateOne)
-router.delete('/:barcode',productController.deleteOne)
+router.post('/:barcode',productController.updateOne)
+router.get('/delete/:barcode',productController.deleteOne)
 
 
 export default router;  

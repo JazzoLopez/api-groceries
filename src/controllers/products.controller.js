@@ -21,9 +21,11 @@ productController.getAll = async (req, res) => {
 
 productController.getOne = async (req, res) => {
    productDao.getOne(req.params.barcode)
-   .then(result => {
-      if(result!= null){
-      res.json(result)
+   .then(product => {
+      if(product!= null){
+         res.render('../src/views/update.ejs',{
+            product
+         })
    }
    else{
       res.json({
@@ -51,7 +53,7 @@ productController.updateOne = async (req, res) => {
    productDao.updateOne(req.params.barcode, req.body)
    .then(result => {
       if(result){
-         res.status(200).json({"status":"product update"})
+         res.status(200).redirect('/api/products')
       }
    })
    .catch(err => {
@@ -63,7 +65,7 @@ productController.deleteOne = async (req, res) => {
    productDao.deleteOne(req.params.barcode)
    .then(result => {
       if(result){
-         res.status(200).json({"status":"product delete"})
+         res.status(200).redirect('/api/products')
       }
    })
    .catch(err => {
