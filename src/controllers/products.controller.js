@@ -53,7 +53,7 @@ productController.updateOne = async (req, res) => {
    productDao.updateOne(req.params.barcode, req.body)
    .then(result => {
       if(result){
-         res.status(200).redirect('/api/products')
+         res.status(200).redirect('/')
       }
    })
    .catch(err => {
