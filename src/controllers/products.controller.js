@@ -49,17 +49,20 @@ productDao.insertOne(req.body)
 })
 }
 
+
 productController.updateOne = async (req, res) => {
    productDao.updateOne(req.params.barcode, req.body)
    .then(result => {
       if(result){
-         res.status(200).redirect('/')
+         // Simplemente redirige a la ruta sin parámetros
+         res.status(307).redirect('/api/products');
       }
    })
    .catch(err => {
-      res.status(500).json({"status":"Server unaviable"})
-   })
-}
+      res.status(500).json({"status":"Server unaviable"});
+   });
+};
+
 
 productController.deleteOne = async (req, res) => {
    productDao.deleteOne(req.params.barcode)
