@@ -67,9 +67,7 @@ productController.updateOne = async (req, res) => {
 productController.deleteOne = async (req, res) => {
    productDao.deleteOne(req.params.barcode)
    .then(result => {
-      if(result){
-         res.status(200).send("Deleted")
-      }
+      res.status(307).redirect('/');
    })
    .catch(err => {
       res.status(500).json({"status":"Server unaviable"})
