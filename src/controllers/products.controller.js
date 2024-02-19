@@ -54,7 +54,7 @@ productController.updateOne = async (req, res) => {
    productDao.updateOne(req.params.barcode, req.body)
    .then(result => {
       if(result){
-         // Simplemente redirige a la ruta sin parámetros
+
          res.status(307).redirect('/api/products');
       }
    })
