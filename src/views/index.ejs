@@ -4,27 +4,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
-    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
-    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <title>Document</title>
 </head>
 
-<body>
-    <div data-role="page" data-theme="b">
-        <div class="" data-role="header">
-            <h1>Abarrotes TI</h1>
-            <div data-role="navbar">
-                <ul>
-                    <li><a href="#" data-icon="home">Inicio</a></li>
-                    <li><a href="#" data-icon="eye" class="ui-btn-active">Productos</a></li>
-                    <li><a href="#" data-icon="user">Empleados</a></li>
-                </ul>
-            </div>
-        </div>
-        <div data-role="content">
+<body class="m-5 py-2">
+
+
+
             <form action="/" method="post">
-                <input type="text" name="barcode" placeholder="Código de barras">
+                <div class="mb-3">
+                  <label for="barcode" class="form-label">Codigo de barras</label>
+                  <input type="barcode" class="form-control" id="barcode" name="barcode" aria-describedby="emailHelp">
+                  <div id="emailHelp" class="form-text">El codigo de barras no debe repetirse o no se registrara.</div>
+                </div>
+
+
                 <input type="text" name="description" placeholder="Descripción">
                 <input type="text" name="brand" placeholder="Marca">
                 <input type="number" name="price" placeholder="Precio">
@@ -32,65 +27,58 @@
                 <input type="number" name="stock" placeholder="Stock">
                 <input type="date" name="expiredDate" placeholder="Fecha de expiracion">
                 <label for="status">Activo</label>
-                <select name="status" data-role="slider">
-                    <option value="0">No</option>
+                <select class="form-select" size="3" aria-label="size 3 select example">
+                    <option selected>Activo</option>
                     <option value="1">Si</option>
-                </select>
+                    <option value="2">No</option>
+                
+                  </select>
+
                 <button class="ui-shadow ui-btn ui-corner-all" type="submit">Guardar</button>
-            </form>
-            <!--  -->
 
-            <form>
-                <input data-type="search" id="searchForCollapsibleSetChildren">
-            </form>
-            <div data-role="collapsibleset" data-filter="true" data-children="> div, > div div ul li" data-inset="true"
-                id="collapsiblesetForFilterChildren" data-input="#searchForCollapsibleSetChildren">
-                <!-- <h3>Animals</h3> -->
-                <% products.forEach((product)=> {%>
-                    <div data-role="collapsible" data-filtertext="<%= product.description%>">
-                        <h3>
-                            <%= product.description %>
-                        </h3>
-                        <ul data-role="listview" data-inset="false">
-                            <li>
-                                Codigo de barras: <%= product.barcode%>
-                            </li>
-                            <li data-filtertext="<%= product.brand%>">
-                                Descripción: <%= product.brand%>
-                            </li>
-                            <li data-filtertext="<%= product.cost%>">
-                                Costo: <%= product.cost%>
-                            </li>
-                            <li data-filtertext="<%= product.price%>">
-                                Precio: <%= product.price%>
-                            </li>
-                            <li data-filtertext="<%= product.stock%>">
-                                Stock: <%= product.stock%>
-                            </li>
-                            <li data-filtertext="<%= product.expiredDate%>">
-                                Fecha de caducidad: <%= product.expiredDate%>
-                            </li>
-                            <% if(product.status){%>
-                            <li style="background-color: green;">Activo</li>
-                            <% } else{%>
-                            <li style="background-color: red;">Inactivo</li>
-                            <% }%>
-                            <li>
-                                <a href="/<%=product.barcode %>" class="ui-btn">Editar</a>
-                            </li>
-                            <li>
-                                <a href="/delete/<%=product.barcode %>" class="ui-btn">Eliminar</a>
-                            </li>
 
-                        </ul>
+              </form>
 
-                    </div>
-                    <% })%>
+
+        <div class="table-responsive">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Codigo de barras</th>
+                    <th scope="col">Descripcion</th>
+                    <th scope="col">Marca</th>
+                    <th scope="col">Precio de venta</th>
+                    <th scope="col">Costo de compra</th>
+                    <th scope="col">Stock</th>
+                    <th scope="col">Fecha de caducidad</th>
+                    <th scope="col">Estatus</th>
+                    <th rowspan="2">Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <% products.forEach((product) =>{ %>
+                  <tr>
+                    <th scope="row">🍪</th>
+                    <td> <%=product.barcode %> ></td>
+                    <td><%=product.description %></td>
+                    <td><%=product.brand %></td>
+                    <td><%=product.price %></td>
+                    <td><%=product.cost %></td>
+                    <td><%=product.stock %></td>
+                    <td><%=product.expiredDate %></td>
+                    <%if(product.status==1){ %>
+                    <td>Disponible</td>
+                    <% }else{ %>
+                    <td>No disponible</td>
+                    <% } %>
+                    <td><a href="" class="btn btn-warning">Editar</a></td>
+                    <td><a href="" class="btn btn-danger">Eliminar</a></td>
+                  </tr>
+                  <% }) %>
+                </tbody>
+              </table>
             </div>
-            <div data-role="footer">
-                <h5>Developed by JazzoLopez</h5>
-            </div>
-        </div>
 </body>
 
 </html>
